@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"; // ES6
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Game = ({ score, setScore }) => {
   const [userChoice, setUserChoice] = useState(null);
@@ -50,48 +51,75 @@ const Game = ({ score, setScore }) => {
     // Rock, paper scissors game
     <>
       {!result && (
-        <div className="relative game">
-          <div className="">
-            {choices.map((choice, index) => {
-              return (
-                <>
-                  <div className="absolute -translate-x-1/2 translate-y-1/2 top-0 left-1/2 z-10">
-                    <img src="/images/bg-triangle.svg" alt="Triangle" />
-                  </div>
-                  <div
-                    key={choice}
-                    onClick={() => handleUserChoice(choice)}
-                    className={`w-32 absolute z-20 ${
-                      index === 0
-                        ? "left-0 top-0"
-                        : index === 1
-                        ? "right-0 top-0"
-                        : "bottom-0 -translate-x-1/2 left-1/2"
-                    }`}
-                  >
-                    <img src={`/images/${choice}.png`} alt={choice} />
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </div>
+        <AnimatePresence>
+          <motion.div
+            className="relative game"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="">
+              {choices.map((choice, index) => {
+                return (
+                  <>
+                    <div className="absolute -translate-x-1/2 translate-y-1/2 top-0 left-1/2 z-10">
+                      <img src="/images/bg-triangle.svg" alt="Triangle" />
+                    </div>
+                    <div
+                      key={choice}
+                      onClick={() => handleUserChoice(choice)}
+                      className={`w-32 absolute z-20 cursor-pointer ${
+                        index === 0
+                          ? "left-0 top-0"
+                          : index === 1
+                          ? "right-0 top-0"
+                          : "bottom-0 -translate-x-1/2 left-1/2"
+                      }`}
+                    >
+                      <motion.div whileTap={{ scale: 0.9 }}>
+                        <img src={`/images/${choice}.png`} alt={choice} />
+                      </motion.div>
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       )}
 
       {result && (
         <>
           <div className="relative game">
-            <div className="flex flex-col items-center gap-3 text-white absolute top-0 left-0 w-32">
-              <img src={`/images/${userChoice}.png`} alt={userChoice} />
+            <motion.div
+              className="flex flex-col items-center gap-3 text-white absolute top-0 left-0 w-32 bg-red"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="relative winner">
+                <img src={`/images/${userChoice}.png`} alt={userChoice} />
+              </div>
               <p>YOU PICKED</p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col items-center gap-3 text-white absolute top-0 right-0 w-32">
+            <motion.div
+              className="flex flex-col items-center gap-3 text-white absolute top-0 right-0 w-32"
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+            >
               <img src={`/images/${computerChoice}.png`} alt={computerChoice} />
               <p>THE HOUSE PICKED</p>
-            </div>
+            </motion.div>
           </div>
-          <div className="flex flex-col items-center">
+          <motion.div
+            className="flex flex-col items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
             <p className="text-white text-6xl font-bold text-center">
               {result === "win" && "YOU WIN"}
               {result === "lose" && "YOU LOSE"}
@@ -103,7 +131,7 @@ const Game = ({ score, setScore }) => {
             >
               PLAY AGAIN
             </button>
-          </div>
+          </motion.div>
         </>
       )}
     </>

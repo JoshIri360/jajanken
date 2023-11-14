@@ -6,3 +6,52 @@
   width: min(80%, 300px);
   padding-top: min(80%, 300px);
 }
+
+.winner {
+    z-index: 30;
+}
+
+.winner ::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.winner:before {
+  content: "dd";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(365deg, #313283 50%, #38639c 129%);
+  transform: translate3d(0px, 0px, 0) scale(1.11);
+  filter: blur(42px);
+  opacity: var(0.62);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+.winner::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
