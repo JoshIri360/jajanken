@@ -45,7 +45,7 @@ const Game = ({ score, setScore, onReady }) => {
     } else if (result === "lose") {
       setScore(score - 1);
     }
-  }, [userChoice, computerChoice, score, setScore]);
+  }, [userChoice, computerChoice]);
 
   useEffect(() => {
     console.log("Game component rendered"); // Add this line
@@ -70,7 +70,11 @@ const Game = ({ score, setScore, onReady }) => {
                 return (
                   <div key={index}>
                     <div className="absolute -translate-x-1/2 translate-y-1/2 top-0 left-1/2 z-10">
-                      <img src="/images/bg-triangle.svg" alt="Triangle" />
+                      <img
+                        src="/images/bg-triangle.svg"
+                        alt="Triangle"
+                        draggable="false"
+                      />
                     </div>
                     <div
                       key={choice}
@@ -84,7 +88,11 @@ const Game = ({ score, setScore, onReady }) => {
                       }`}
                     >
                       <motion.div whileTap={{ scale: 0.9 }}>
-                        <img src={`/images/${choice}.png`} alt={choice} />
+                        <img
+                          src={`/images/${choice}.png`}
+                          alt={choice}
+                          draggable="false"
+                        />
                       </motion.div>
                     </div>
                   </div>
@@ -105,7 +113,11 @@ const Game = ({ score, setScore, onReady }) => {
               transition={{ duration: 0.5 }}
             >
               <div className="relative winner">
-                <img src={`/images/${userChoice}.png`} alt={userChoice} />
+                <img
+                  src={`/images/${userChoice}.png`}
+                  alt={userChoice}
+                  draggable="false"
+                />
               </div>
               <p>YOU PICKED</p>
             </motion.div>
@@ -116,7 +128,11 @@ const Game = ({ score, setScore, onReady }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
             >
-              <img src={`/images/${computerChoice}.png`} alt={computerChoice} />
+              <img
+                src={`/images/${computerChoice}.png`}
+                alt={computerChoice}
+                draggable="false"
+              />
               <p>THE HOUSE PICKED</p>
             </motion.div>
           </div>
