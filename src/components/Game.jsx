@@ -2,7 +2,7 @@ import PropTypes from "prop-types"; // ES6
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Game = ({ score, setScore }) => {
+const Game = ({ score, setScore, onReady }) => {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
@@ -45,7 +45,13 @@ const Game = ({ score, setScore }) => {
     } else if (result === "lose") {
       setScore(score - 1);
     }
-  }, [userChoice, computerChoice]);
+  }, [userChoice, computerChoice, score, setScore]);
+
+  useEffect(() => {
+    console.log("Game component rendered"); // Add this line
+
+    onReady();
+  });
 
   return (
     // Rock, paper scissors game
@@ -62,7 +68,7 @@ const Game = ({ score, setScore }) => {
             <div className="">
               {choices.map((choice, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     <div className="absolute -translate-x-1/2 translate-y-1/2 top-0 left-1/2 z-10">
                       <img src="/images/bg-triangle.svg" alt="Triangle" />
                     </div>
@@ -81,7 +87,7 @@ const Game = ({ score, setScore }) => {
                         <img src={`/images/${choice}.png`} alt={choice} />
                       </motion.div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -141,6 +147,7 @@ const Game = ({ score, setScore }) => {
 Game.propTypes = {
   score: PropTypes.number.isRequired,
   setScore: PropTypes.func.isRequired,
+  onReady: PropTypes.func.isRequired,
 };
 
 export default Game;
