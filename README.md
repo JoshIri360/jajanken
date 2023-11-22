@@ -1,7 +1,3 @@
-Certainly! Here's a template for your README file:
-
----
-
 # Jajanken Web App
 
 ## Description
