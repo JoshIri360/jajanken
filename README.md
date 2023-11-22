@@ -3,6 +3,7 @@
 ## Description
 
 Jajanken is a React-based web application that brings the classic rock-paper-scissors game to life, inspired by Gon Freecss' move in Hunter x Hunter (HXH). The app is built using React and styled with Tailwind CSS, providing a visually appealing and interactive experience.
+
 ![gon-jajanken](https://github.com/JoshIri360/jajanken/assets/91752742/c0e28789-df36-46b3-a074-a672afcfb48d)
 
 ## Features
