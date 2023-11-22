@@ -48,11 +48,7 @@ Jajanken is a React-based web application that brings the classic rock-paper-sci
 2. Open your web browser and visit `http://localhost:3000` to play Jajanken.
 
 ## Snippets
-
-
-https://github.com/JoshIri360/jajanken/assets/91752742/379e2a00-9d67-4c0d-8f88-202cba2c8753
-
-
+https://github.com/JoshIri360/jajanken/assets/91752742/17f28a95-5ca1-4250-8b78-148b2c683d98
 
 
 ## Technologies Used
